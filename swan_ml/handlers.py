@@ -74,7 +74,6 @@ class ListRunsHandler(APIHandler):
 
 def setup_handlers(web_app, config: SwanML):
     """Register API handlers with the Jupyter server."""
-    host_pattern = ".*$"
     base_url = web_app.settings["base_url"]
     web_app.settings["swan_ml_config"] = config
 
@@ -85,7 +84,7 @@ def setup_handlers(web_app, config: SwanML):
         ),
     ]
 
-    web_app.add_handlers(host_pattern, handlers)
+    web_app.add_handlers(".*", handlers)
     logger.info(
         "Registered swan-ml API handlers at %sapi/mlcern/", base_url
     )
