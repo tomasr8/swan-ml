@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "swan-ml"
-version = "0.1.0"
+version = "0.2.0"
 description = "JupyterLab sidebar showing ml.cern.ch pipeline run status"
 requires-python = ">=3.11"
 license = "MIT"
