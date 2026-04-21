@@ -14,34 +14,6 @@ from swan_ml.ml import get_kfp_client
 
 logger = logging.getLogger(__name__)
 
-DUMMY_RUNS = {
-    "runs": [
-        {
-            "id": f"run-{i}",
-            "name": "Data Preprocessing",
-            "state": "RUNNING" if i % 3 == 0 else "SUCCEEDED",
-            "created_at": "2024-01-03T14:45:00Z",
-            "finished_at": "2024-01-03T15:10:00Z",
-            "url": f"https://ml.cern.ch/pipeline/#/runs/details/run-{i}",
-        } for i in range(20)
-    ],
-    "next_page_token": 'foo',
-}
-
-DUMMY_RUNS_PAGE_2 = {
-    "runs": [
-        {
-            "id": f"run-{i}",
-            "name": "Model Training",
-            "state": "RUNNING" if i % 2 == 0 else "FAILED",
-            "created_at": "2024-01-04T10:20:00Z",
-            "finished_at": "2024-01-04T12:00:00Z",
-            "url": f"https://ml.cern.ch/pipeline/#/runs/details/run-{i}",
-        } for i in range(20, 40)
-    ],
-    "next_page_token": None,
-}
-
 
 class ListRunsHandler(APIHandler):
     """List pipeline runs."""
@@ -57,7 +29,6 @@ class ListRunsHandler(APIHandler):
             page_token = self.get_argument("page_token", "")
 
             config = self.swan_config
-            await asyncio.sleep(2.5)  # Simulate some latency
 
             def _fetch():
                 client = get_kfp_client(
@@ -81,7 +52,7 @@ class ListRunsHandler(APIHandler):
                             "finished_at": (
                                 str(run.finished_at) if run.finished_at else None
                             ),
-                            "url": f"{config.kubeflow_host}/#/runs/details/${run.id}",
+                            "url": f"{config.kubeflow_host}/#/runs/details/${run.run_id}",
                         }
                     )
                 return {
@@ -89,14 +60,6 @@ class ListRunsHandler(APIHandler):
                     "next_page_token": response.next_page_token or None,
                     "total_size": response.total_size,
                 }
-                # if page_size == 40:
-                #     return {
-                #         "runs": DUMMY_RUNS["runs"] + DUMMY_RUNS_PAGE_2["runs"],
-                #         "next_page_token": None,
-                #     }
-                # if page_token == 'foo':
-                #     return DUMMY_RUNS_PAGE_2
-                # return DUMMY_RUNS
 
 
             loop = asyncio.get_running_loop()
