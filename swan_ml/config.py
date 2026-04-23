@@ -6,7 +6,7 @@ class SwanML(Configurable):
     """swan-ml configuration"""
 
     token_path = Unicode(
-        "/tmp/kubeflow-ml_oauth.token",
+        "/tmp/kubeflow_ml_oauth.token",
         help="Path to the OAuth token file used to authenticate with Kubeflow.",
     ).tag(config=True)
 
