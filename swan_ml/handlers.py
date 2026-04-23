@@ -52,7 +52,7 @@ class ListRunsHandler(APIHandler):
                             "finished_at": (
                                 str(run.finished_at) if run.finished_at else None
                             ),
-                            "url": f"{config.kubeflow_host}/#/runs/details/${run.run_id}",
+                            "url": f"{config.kubeflow_host}/#/runs/details/{run.run_id}",
                         }
                     )
                 return {
