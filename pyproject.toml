@@ -4,21 +4,24 @@ build-backend = "hatchling.build"
 
 [project]
 name = "swan-ml"
-version = "0.3.0"
 description = "JupyterLab sidebar showing ml.cern.ch pipeline run status"
 requires-python = ">=3.11"
 license = "MIT"
 dependencies = [
     "jupyter_server>=2.0",
-    "kfp>=2.8.0",
+    "kfp>=2.8.0,<3",
     "PyJWT>=2.0.1",
 ]
+dynamic = ["version"]
 
 [dependency-groups]
 dev = [
     "jupyterlab>=4.0.0,<5",
     "ruff==0.15.11",
 ]
+
+[tool.hatch.version]
+path = "swan_ml/__init__.py"
 
 [tool.hatch.build.targets.wheel.shared-data]
 "swan_ml/labextension" = "share/jupyter/labextensions/swan-ml"

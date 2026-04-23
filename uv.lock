@@ -1879,7 +1879,6 @@ wheels = [
 
 [[package]]
 name = "swan-ml"
-version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "jupyter-server" },
@@ -1897,7 +1896,7 @@ dev = [
 requires-dist = [
     { name = "jupyter-server", specifier = ">=2.0" },
     { name = "kfp", specifier = ">=2.8.0" },
-    { name = "pyjwt", specifier = "==2.12.1" },
+    { name = "pyjwt", specifier = ">=2.0.1" },
 ]
 
 [package.metadata.requires-dev]
