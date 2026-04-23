@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling==1.29.0", "jupyterlab==4.5.6", "hatch-nodejs-version==0.4.0"]
+requires = ["hatchling==1.29.0", "jupyterlab==4.5.6"]
 build-backend = "hatchling.build"
 
 [project]
@@ -21,7 +21,7 @@ dev = [
 ]
 
 [tool.hatch.version]
-path = "swan_ml/__init__.py"
+path = "swan_ml/_version.py"
 
 [tool.hatch.build.targets.wheel.shared-data]
 "swan_ml/labextension" = "share/jupyter/labextensions/swan-ml"

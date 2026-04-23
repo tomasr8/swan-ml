@@ -12,7 +12,6 @@ node_modules/
 # TypeScript / JupyterLab build output
 lib/
 swan_ml/labextension/
-swan_ml/_version.py
 tsconfig.tsbuildinfo
 
 # Jupyter

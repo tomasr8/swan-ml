@@ -1,4 +1,6 @@
-__version__ = "0.4.2"
+from swan_ml._version import __version__
+
+__all__ = ["__version__"]
 
 
 def _jupyter_labextension_paths():
